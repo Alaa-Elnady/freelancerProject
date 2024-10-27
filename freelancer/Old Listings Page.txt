@@ -1,0 +1,57 @@
+{{-- <?php
+  echo "I'm working";
+?>  --}}
+
+
+<!-- Normal way  -->
+{{-- <h1><?php echo $heading; ?></h1>
+<?php foreach($listings as $listing) {?>
+  <h2><?php echo $listing['title']; ?></h2>
+  <p><?php echo $listing['description']; ?></p>
+<?php } ?> --}}
+
+
+<!-- Blade way  (renaming the file from listings.php to listings.blade.php) -->
+<!-- The solution to list the items of my array in laravel  -->
+{{-- <h1>{{$heading}}</h1> --}}
+{{-- Directives --}}
+{{-- ------------------------------------ --}}
+{{-- if directive --}}
+{{-- @if(count($listings) == 0)
+  <h1>No Listing Found!</h1>
+@else 
+  @foreach($listings as $listing)
+    <a href="/listings/{{$listing['id']}}"><h3>{{$listing['title']}}</h3></a>
+    <p>{{$listing['description']}}</p>
+  @endforeach
+@endif --}}
+
+
+{{-- php directive --}}
+{{-- @php
+  $test = 1;
+@endphp
+{{$test}} --}}
+
+
+@extends('layout')
+@section('content')
+  <h1>{{$heading}}</h1>
+
+  @unless(count($listings) == 0)
+    {{-- foreach directive --}}
+    @foreach($listings as $listing)
+      <a href="/listings/{{$listing['id']}}"><h3>{{$listing['title']}}</h3></a>
+      <p>{{$listing['description']}}</p>
+    @endforeach
+  @else 
+    <h1>No Listings Found!</h1> 
+  @endunless
+@endsection
+    
+
+
+
+
+
+
